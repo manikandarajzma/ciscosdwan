@@ -10,29 +10,48 @@ hostname {{hostname}}
 ip route 0.0.0.0 0.0.0.0 {{internet_next_hop}}
 ip route 0.0.0.0 0.0.0.0 {{tloc_ext_next_hop}}
 !
-{% for interface in interfaces %}
-interface {{interface.name}}
- description {{interface.description}}
+interface {{interface1.name}}
+ description {{interface1.description}}
  no shutdown
- ip address {{interface.ip_address}} {{interface.subnet_mask}}
+ ip address {{interface1.ip_address}} {{interface1.subnet_mask}}
  negotiation auto
 !
-{% endfor %}
-{% for tunnel in tunnels %}
-interface Tunnel{{tunnel.id}}
+interface {{interface2.name}}
+ description {{interface2.description}}
  no shutdown
- ip unnumbered {{tunnel.source_interface}}
- tunnel source {{tunnel.source_interface}}
+ ip address {{interface2.ip_address}} {{interface2.subnet_mask}}
+ negotiation auto
+!
+interface {{interface3.name}}
+ description {{interface3.description}}
+ no shutdown
+ ip address {{interface3.ip_address}} {{interface3.subnet_mask}}
+ negotiation auto
+!
+interface {{interface4.name}}
+ description {{interface4.description}}
+ no shutdown
+ ip address {{interface4.ip_address}} {{interface4.subnet_mask}}
+ negotiation auto
+!
+interface Tunnel{{tunnel1.id}}
+ no shutdown
+ ip unnumbered {{tunnel1.source_interface}}
+ tunnel source {{tunnel1.source_interface}}
  tunnel mode sdwan
 exit
-{% endfor %}
+interface Tunnel{{tunnel2.id}}
+ no shutdown
+ ip unnumbered {{tunnel2.source_interface}}
+ tunnel source {{tunnel2.source_interface}}
+ tunnel mode sdwan
+exit
 !
 sdwan
-{% for interface in sdwan_interfaces %}
- interface {{interface.name}}
+ interface {{sdwan_interface1.name}}
   tunnel-interface
-   encapsulation ipsec preference {{interface.preference}}
-   color {{color}}
+   encapsulation ipsec preference {{sdwan_interface1.preference}}
+   color {{sdwan_interface1.color}}
    allow-service all
    no allow-service bgp
    allow-service dhcp
@@ -48,13 +67,28 @@ sdwan
    no allow-service bfd
   exit
  exit
- {% endfor %}
- 
-{% for interface in tloc_extensions %}
- interface {{interface.name}}
-  tloc-extension {{interface.tloc_extension}}
+ interface {{sdwan_interface2.name}}
+  tunnel-interface
+   encapsulation ipsec preference {{sdwan_interface2.preference}}
+   color {{sdwan_interface1.color}}
+   allow-service all
+   no allow-service bgp
+   allow-service dhcp
+   allow-service dns
+   allow-service icmp
+   no allow-service sshd
+   no allow-service netconf
+   no allow-service ntp
+   no allow-service ospf
+   no allow-service stun
+   allow-service https
+   no allow-service snmp
+   no allow-service bfd
+  exit
  exit
- {% endfor %}
+ interface {{tloc_interface.name}}
+  tloc-extension {{tloc_interface.tloc_extension}}
+ exit
  interface Tunnel0
  exit
  appqoe
@@ -78,5 +112,4 @@ sdwan
    advertise static
   !
  !
-!
- 
+! 
