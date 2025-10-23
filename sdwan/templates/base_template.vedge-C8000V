@@ -32,7 +32,7 @@ sdwan
  interface {{interface.name}}
   tunnel-interface
    encapsulation ipsec preference {{interface.preference}}
-   color {{color}}
+   color {{interface.color}}
    allow-service all
    no allow-service bgp
    allow-service dhcp
