@@ -4,6 +4,12 @@
     "hostname": "allen-r1",
     "interfaces":[
         {
+            "name": "GigabitEthernet1",
+            "description": "mpls",
+            "ip_address": "192.168.0.1",
+            "subnet_mask": "255.255.255.254"
+        },
+        {
             "name": "GigabitEthernet2",
             "description": "mpls-tloc",
             "ip_address": "192.168.254.0",
