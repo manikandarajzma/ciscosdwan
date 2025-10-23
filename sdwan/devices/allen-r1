@@ -1,35 +1,55 @@
 {
-  "system_ip": "2.0.0.3",
-  "site_id": "102",
-  "hostname": "allen-r1",
-  "internet_next_hop": "3.0.254.1",
-  "tloc_ext_next_hop": "192.168.0.0",
-  "interface1_name": "GigabitEthernet1",
-  "interface1_description": "mpls",
-  "interface1_ip_address": "192.168.0.1",
-  "interface1_subnet_mask": "255.255.255.254",
-  "interface2_name": "GigabitEthernet2",
-  "interface2_description": "mpls-tloc",
-  "interface2_ip_address": "192.168.254.0",
-  "interface2_subnet_mask": "255.255.255.254",
-  "interface3_name": "GigabitEthernet3",
-  "interface3_description": "internet",
-  "interface3_ip_address": "3.0.254.0",
-  "interface3_subnet_mask": "255.255.255.254",
-  "interface4_name": "GigabitEthernet4",
-  "interface4_description": "lan",
-  "interface4_ip_address": "10.210.1.0",
-  "interface4_subnet_mask": "255.255.255.254",
-  "tunnel1_id": "0",
-  "tunnel1_source_interface": "GigabitEthernet1",
-  "tunnel2_id": "1",
-  "tunnel2_source_interface": "GigabitEthernet3",
-  "sdwan_interface1_name": "GigabitEthernet1",
-  "sdwan_interface1_preference": "100",
-  "sdwan_interface1_color": "mpls restrict",
-  "sdwan_interface2_name": "GigabitEthernet3",
-  "sdwan_interface2_preference": "100",
-  "sdwan_interface2_color": "private1",
-  "tloc_interface_name": "GigabitEthernet2",
-  "tloc_interface_tloc_extension": "GigabitEthernet1"
+    "system_ip": "2.0.0.3",
+    "site_id": "102",
+    "hostname": "allen-r1",
+    "interfaces":[
+        {
+            "name": "GigabitEthernet2",
+            "description": "mpls-tloc",
+            "ip_address": "192.168.254.0",
+            "subnet_mask": "255.255.255.254"
+        },
+        {
+            "name": "GigabitEthernet3",
+            "description": "internet",
+            "ip_address": "3.0.254.0",
+            "subnet_mask": "255.255.255.254"
+        },
+        {
+            "name": "GigabitEthernet4",
+            "description": "lan",
+            "ip_address": "10.210.1.0",
+            "subnet_mask": "255.255.255.254"
+        }   
+    ],
+    "internet_next_hop": "3.0.254.1",
+    "tloc_ext_next_hop": "192.168.0.0",
+    "tunnels": [
+        {
+            "id": 0,
+            "source_interface": "GigabitEthernet1"
+        },
+        {
+            "id": 1,
+            "source_interface": "GigabitEthernet3"
+        }  
+    ],
+    "sdwan_interfaces":[
+        {
+            "name": "GigabitEthernet1",
+            "preference": 100,
+            "color": "mpls restrict"
+        },
+        {
+            "name": "GigabitEthernet3",
+            "preference": 100,
+            "color": "private1"
+        }
+    ],
+    "tloc_extensions":[
+        {
+            "name": "GigabitEthernet2",
+            "tloc_extension": "GigabitEthernet1"
+        }
+    ]
 }
