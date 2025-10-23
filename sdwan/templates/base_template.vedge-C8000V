@@ -15,6 +15,14 @@ vrf definition 10
 ip route 0.0.0.0 0.0.0.0 {{internet_next_hop}}
 ip route 0.0.0.0 0.0.0.0 {{tloc_ext_next_hop}}
 !
+line con 0
+ stopbits 1
+line aux 0
+line vty 0 4
+ transport input ssh
+line vty 5 80
+ transport input none
+!
 {% for interface in interfaces %}
 interface {{interface.name}}
  description {{interface.description}}
