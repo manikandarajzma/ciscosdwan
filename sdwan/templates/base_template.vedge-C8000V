@@ -7,6 +7,11 @@ system
 !
 hostname {{hostname}}
 !
+vrf definition 10
+ rd 1:10
+ address-family ipv4
+  exit-address-family
+ ! 
 ip route 0.0.0.0 0.0.0.0 {{internet_next_hop}}
 ip route 0.0.0.0 0.0.0.0 {{tloc_ext_next_hop}}
 !
