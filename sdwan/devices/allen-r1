@@ -2,6 +2,7 @@
     "system_ip": "2.0.0.3",
     "site_id": "102",
     "hostname": "allen-r1",
+    "mgmt_ip_address": "192.168.15.117",
     "interfaces":[
         {
             "name": "GigabitEthernet1",
