@@ -15,6 +15,9 @@ vrf definition 10
 ip route 0.0.0.0 0.0.0.0 {{internet_next_hop}}
 ip route 0.0.0.0 0.0.0.0 {{tloc_ext_next_hop}}
 !
+user-name admin secret Admin123456
+enable secret Admin123456
+!
 line con 0
  stopbits 1
 line aux 0
